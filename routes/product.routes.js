@@ -257,6 +257,21 @@ router.delete("/:id", auth, seller, async (req, res, next) => {
   }
 });
 
+// @route   GET /api/products/admin/reported
+// @desc    Get all reported products (admin only)
+// @access  Private/Admin
+router.get("/admin/reported", auth, admin, async (req, res, next) => {
+  try {
+    const products = await Product.find({ isReported: true })
+      .sort({ updatedAt: -1 })
+      .populate("seller", "name email photo");
+
+    res.json({ success: true, products });
+  } catch (error) {
+    next(error);
+  }
+});
+
 // @route   PUT /api/products/admin/:id/approve
 // @desc    Approve a product (admin only)
 // @access  Private/Admin

@@ -18,6 +18,8 @@ const wishlistRoutes = require("./routes/wishlist.routes");
 const dashboardRoutes = require("./routes/dashboard.routes");
 const analyticsRoutes = require("./routes/analytics.routes");
 const categoryRoutes = require("./routes/category.routes");
+const uploadRoutes = require("./routes/upload.routes");
+const reportRoutes = require("./routes/report.routes");
 
 const app = express();
 
@@ -59,6 +61,8 @@ app.get("/", (req, res) => {
       dashboard: "/api/dashboard",
       analytics: "/api/analytics",
       categories: "/api/categories",
+      upload: "/api/upload",
+      reports: "/api/reports",
     },
   });
 });
@@ -76,6 +80,8 @@ app.use("/api/wishlist", wishlistRoutes);
 app.use("/api/dashboard", dashboardRoutes);
 app.use("/api/analytics", analyticsRoutes);
 app.use("/api/categories", categoryRoutes);
+app.use("/api/upload", uploadRoutes);
+app.use("/api/reports", reportRoutes);
 
 // ============================================
 // 404 HANDLER
